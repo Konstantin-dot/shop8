@@ -14,10 +14,11 @@
         <p>${product.description}</p>
         <p>Цена: ${product.price} руб.</p>
 
-        <form method="post" action="addToCart">
+        <form method="post" action="cart">
             <input type="hidden" name="id" value="${product.id}" />
             <input type="submit" value="Добавить в корзину" />
         </form>
+
     </div>
 </c:forEach>
 

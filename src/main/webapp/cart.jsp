@@ -8,15 +8,23 @@
 <body>
 <h1>Ваша корзина</h1>
 <c:choose>
-  <c:when test="${empty sessionScope.cart}">
-    <p>Корзина пуста</p>
+  <c:when test="${empty sessionScope.cart or empty sessionScope.cart.products}">
+  <p>Корзина пуста</p>
   </c:when>
   <c:otherwise>
     <ul>
-      <c:forEach var="product" items="${sessionScope.cart}">
-        <li>${product.name} - ${product.price} руб.</li>
+      <c:forEach var="product" items="${sessionScope.cart.products}">
+        <li>
+            ${product.name} - ${product.price} руб.
+              <form method="post" action="cart" style="display:inline; margin-left: 10px;">
+                <input type="hidden" name="id" value="${product.id}" />
+                <input type="hidden" name="_method" value="delete" />
+                <input type="submit" value="Удалить" />
+              </form>
+        </li>
       </c:forEach>
     </ul>
+
   </c:otherwise>
 </c:choose>
 
